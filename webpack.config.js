@@ -26,7 +26,10 @@ module.exports = {
       name: 'remoteV12App',
       filename: "remoteEntry.js",
       exposes: {
-        './VentasModule': './src/app/features/ventas/ventas.module.ts',
+        // Exponer el Web Component para integrarlo desde el host sin mezclar runtimes
+        './VentasWebComponent': './src/bootstrap-ventas-wc.ts',
+        // (Opcional) Mantén el módulo si lo necesitas para otras integraciones
+        // './VentasModule': './src/app/features/ventas/ventas.module.ts',
       },
         // For remotes (please adjust)
         // name: "remoteV12App",
@@ -41,12 +44,9 @@ module.exports = {
 
         // },
 
+        // Como se consumirá como Web Component, evitamos singletons cruzados de Angular
+        // y no compartimos @angular/* para aislar versiones/runtime.
         shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
           ...sharedMappings.getDescriptors()
         })
 
