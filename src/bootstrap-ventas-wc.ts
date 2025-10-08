@@ -1,6 +1,3 @@
-// Registro de Web Component para la feature de Ventas (Angular 12)
-// Nota: Requiere @angular/elements y el polyfill document-register-element
-
 import '@ungap/custom-elements';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
@@ -11,7 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-// Bootstrap del módulo y registro del custom element
 platformBrowserDynamic()
   .bootstrapModule(VentasElementsModule)
   .then(() => {
