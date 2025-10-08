@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'remote',
+      name: 'remote-v12-app',
       filename: "remoteEntry.js",
       exposes: {
         './VentasModule': './src/app/features/ventas/ventas.module.ts',
